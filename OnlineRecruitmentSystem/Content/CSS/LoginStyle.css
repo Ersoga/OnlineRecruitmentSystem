@@ -1,5 +1,5 @@
 ﻿body {
-    background: url("../Image/1.jpg");
+    background: url("../../Image/1.jpg");
     animation-name: myfirst;
     animation-duration: 12s;
     /*变换时间*/
@@ -13,19 +13,19 @@
 
 @keyframes myfirst {
     0% {
-        background: url("../Image/4.jpg");
+        background: url("../../Image/4.jpg");
     }
 
     34% {
-        background: url("../Image/2.jpg");
+        background: url("../../Image/2.jpg");
     }
 
     67% {
-        background: url("../Image/4.jpg");
+        background: url("../../Image/4.jpg");
     }
 
     100% {
-        background: url("../Image/4.jpg");
+        background: url("../../Image/4.jpg");
     }
 }
 
@@ -43,9 +43,9 @@
     color: #ccc;
 }
 
-/*input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"] {
     padding-left: 26px;
-}*/
+}
 
 .checkbox {
     padding-left: 21px;

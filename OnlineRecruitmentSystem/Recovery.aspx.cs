@@ -7,11 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace OnlineRecruitmentSystem
 {
-    public partial class SiteMaster : MasterPage
+    public partial class Recovery : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
     }
 }
