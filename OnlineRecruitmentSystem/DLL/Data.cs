@@ -5,23 +5,62 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-
+using MySql;
 namespace OnlineRecruitmentSystem
 {
-    public static class DataOpertion
+    public class DataOpertion
     {
-        private static readonly string strL = ConfigurationManager.ConnectionStrings["sqlConnectionL"].ToString();
+        private string ConnectStr { get; set; }
+        public  DataOpertion(string str)
+        {
+            this.ConnectStr = str;
+        }
+
+        // = ConfigurationManager.ConnectionStrings["sqlConnectionL"].ToString();
+        private SqlConnection Connect()
+        {
+            SqlConnection con = new SqlConnection(ConnectStr);
+            con.Open();
+            return con;
+        }
+        private SqlCommand Command(ref string sql, params SqlParameter[] parameter)
+        {
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            SqlCommand com = new SqlCommand(sql, this.Connect());
+            com.Parameters.AddRange(parameter);
+            return com;
+        }
+        /// <summary>
+        /// 查看修改行数
+        /// </summary>
+        /// <param name="sql">sql</param>
+        /// <returns></returns>
+        public virtual int Execute(ref string sql, params SqlParameter[] parameter)
+        {
+            return this.Command(ref sql,parameter).ExecuteNonQuery();
+        }
+        /// <summary>
+        /// 获取数据集
+        /// </summary>
+        /// <param name="sql">sql</param>
+        /// <returns></returns>
+        
+        
+        public virtual SqlDataReader Read(ref string sql, params SqlParameter[] parameter)
+        {
+            return this.Command(ref sql,parameter).ExecuteReader();
+        }
         /// <summary>
         /// 数据库查询
         /// </summary>
         /// <param name="sqlStr"></param>
         /// <param name="parameter">参数</param>
         /// <returns></returns>
-        public static DataTable Select(string sqlStr, params SqlParameter[] parameter)
+        public DataTable Select(string sqlStr, params SqlParameter[] parameter)
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection(strL))
+                using (SqlConnection conn = new SqlConnection(ConnectStr))
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(sqlStr, conn);
@@ -46,7 +85,7 @@ namespace OnlineRecruitmentSystem
         /// <param name="sqlStr"></param>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool UpdateData(string sqlStr, params SqlParameter[] parameter)
+        public bool UpdateData(string sqlStr, params SqlParameter[] parameter)
         {
             try
             {
@@ -98,6 +137,7 @@ namespace OnlineRecruitmentSystem
                 throw new ApplicationException("删除数据异常" + ex.Message);
             }
         }
+        
     }
     public class Recruitment
     {

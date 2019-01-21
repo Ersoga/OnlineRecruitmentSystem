@@ -5,7 +5,8 @@
             <h1>Hello, world!
             </h1>
         </div>
-    <div class="row">
+        <iframe width="900" height="900" src="https://cybermap.kaspersky.com/cn/widget/dynamic/dark" frameborder="0" ></iframe>
+     <%-- <div class="row">
         <div class="col-xs-4">
             <h2 class="page-header">
                 区域一
@@ -36,7 +37,7 @@
                 grouping common resources and providing both compiled and minified variations.
             </p>
         </div>
-    </div>
+    </div>--%>
 </div>
 
 </asp:Content>

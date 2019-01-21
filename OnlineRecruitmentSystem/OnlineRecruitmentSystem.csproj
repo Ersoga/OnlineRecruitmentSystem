@@ -44,12 +44,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=8.0.11.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -189,7 +198,7 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Data.cs" />
+    <Compile Include="DLL\Data.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -207,6 +216,7 @@
     <Compile Include="HomePage.aspx.designer.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="IDLL\IData.cs" />
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -264,6 +274,32 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BLL\" />
+    <Folder Include="IBLL\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{f67aed58-26e8-46bd-8fa5-9c0762d2d8e9}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlineRecuitmentSystemBLL\OnlineRecuitmentSystemBLL.csproj">
+      <Project>{37935058-dc52-4158-8b5b-681e5b2038b9}</Project>
+      <Name>OnlineRecuitmentSystemBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlineRecuitmentSystemDAL\OnlineRecuitmentSystemDAL.csproj">
+      <Project>{6512fe14-3ab9-462c-9c7c-95ef6f1a662d}</Project>
+      <Name>OnlineRecuitmentSystemDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlineRecuitmentSystemIBLL\OnlineRecuitmentSystemIBLL.csproj">
+      <Project>{c0471ba9-01c0-438b-8c5f-91ed4ad0cf7d}</Project>
+      <Name>OnlineRecuitmentSystemIBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlineRecuitmentSystemIDAL\OnlineRecuitmentSystemIDAL.csproj">
+      <Project>{1f22f774-fbeb-467d-b65f-1438e095239e}</Project>
+      <Name>OnlineRecuitmentSystemIDAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

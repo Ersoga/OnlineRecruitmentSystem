@@ -12,12 +12,7 @@ namespace OnlineRecruitmentSystem
 {
     public partial class Login : System.Web.UI.Page
     {
-
-        //const string str = "Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\14436\\source\\repos\\OnlineRecruitmentSystem\\OnlineRecruitmentSystem\\App_Data\\RecuitmentSystem.mdf;Integrated Security = True";
-        //private SqlConnection con = new SqlConnection(strL);
-
-        //public SqlConnection Con { get => con; set => con = value; }
-
+        DataOpertion UsersData = new DataOpertion(ConfigurationManager.ConnectionStrings["sqlConnectionL"].ToString());
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -48,7 +43,7 @@ namespace OnlineRecruitmentSystem
         private bool MLogin(string UserName,string Password)
         {
             var sqlStr = "select * from UserTable where UserName=@UserName and Password=@Password";
-            DataTable table = DataOpertion.Select(sqlStr, new System.Data.SqlClient.SqlParameter[] { new System.Data.SqlClient.SqlParameter("@UserName", UserName), new System.Data.SqlClient.SqlParameter("@Password", Password) });
+            DataTable table = UsersData.Select(sqlStr, new System.Data.SqlClient.SqlParameter[] { new System.Data.SqlClient.SqlParameter("@UserName", UserName), new System.Data.SqlClient.SqlParameter("@Password", Password) });
             if(table.Rows.Count.CompareTo(0)>0)
             {
                 return true;
@@ -58,24 +53,21 @@ namespace OnlineRecruitmentSystem
 
         protected void UserLogin_Authenticate(object sender, AuthenticateEventArgs e)
         {
-            
-            System.Data.SqlClient.SqlConnection con = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["sqlConnectionL"].ToString());
-            con.Open();
             string strSql = "select * from UserTable where UserName=@UserName and Password=@Password";
-            System.Data.SqlClient.SqlCommand com = new System.Data.SqlClient.SqlCommand(strSql, con);
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            com.Parameters.AddRange(new SqlParameter[]{ new SqlParameter("@UserName",UserLogin.UserName), new SqlParameter("@Password",UserLogin.Password)});
-            System.Data.SqlClient.SqlDataReader dr = com.ExecuteReader();
-            if (dr.Read())
+            if(this.UsersData.Read(ref strSql, new SqlParameter[] { new SqlParameter("@UserName", UserLogin.UserName), new SqlParameter("@Password", UserLogin.Password) }).HasRows)
             {
                 e.Authenticated = true;//通过验证 
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script><location.herf='/HomePage.aspx';</script>");
             }
             else
             {
                 e.Authenticated = false;
             }
-            dr.Close();
-            con.Close();
+        }
+
+        protected void UserLogin_LoginError(object sender, EventArgs e)
+        {
+            Response.Write("Error");
         }
     }
 }
