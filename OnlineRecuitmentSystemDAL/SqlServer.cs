@@ -75,7 +75,7 @@ namespace OnlineRecuitmentSystemDAL
         }
         private SqlCommand Command(ref string sql, params SqlParameter[] parameter)
         {
-            SqlDataAdapter adapter = new SqlDataAdapter();
+            //SqlDataAdapter adapter = new SqlDataAdapter();
             SqlCommand com = new SqlCommand(sql, this.Connect());
             com.Parameters.AddRange(parameter);
             return com;
@@ -109,10 +109,10 @@ namespace OnlineRecuitmentSystemDAL
             {
                 new SqlParameter("@PhoneNumber",phone)
             };
-            
-            if (this.Execute(ref sql, parameters) == 1)
+            SqlDataReader sqlData = this.Read(ref sql, parameters);
+            if (sqlData.HasRows)
             {
-                SqlDataReader sqlData = this.Read(ref sql, parameters);
+                sqlData.Read();
                 table.UserName = (string)sqlData["UserName"];
                 table.Password = (string)sqlData["Password"];
                 table.RegistrationTime = (DateTime)sqlData["RegistrationTime"];

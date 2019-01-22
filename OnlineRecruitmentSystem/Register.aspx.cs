@@ -26,11 +26,29 @@ namespace OnlineRecruitmentSystem
                 user.UserName = this.UserName.Text;
                 user.RegistrationTime = DateTime.Now;
                 user.Type = "普通用户";
-                userManager.RegistUser(user);
+                if(userManager.ValidationUser(user.PhoneNumber))
+                {
+                    Response.Write("<script>alert('已存在该用户,请登录');</script>");
+                    Response.Redirect("/Login.aspx");
+                }
+                else
+                {
+                    if (userManager.RegistUser(user))
+                    {
+                        Response.Write("<script>alert('注册成功');</script>");
+                        Response.Redirect("/Login.aspx");
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('注册失败');</script>");
+                        //Response.Redirect("/Login.aspx");
+                    }
+                }
+                
             }
             else
             {
-                Response.Write("<script>alter('两次密码不相同')</script>");
+                Response.Write("<script>alert('两次密码不相同')</script>");
             }
         }
     }

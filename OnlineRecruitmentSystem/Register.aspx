@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="OnlineRecruitmentSystem.Register" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="center-block container">
-        <div class="form-group row input-group">
+        <div class="form-group row">
             <br />
             <br />
             <asp:Label ID="Label1" runat="server" Text="用户名：" CssClass="form-horizontal"></asp:Label>
@@ -16,7 +16,7 @@
             <asp:Label ID="Label4" runat="server" Text="手机号：" CssClass="form-group-sm"></asp:Label>
             <asp:TextBox ID="PhoneNumber" runat="server" CssClass="form-control" TextMode="Phone"></asp:TextBox>
             <br />
-            <asp:Button ID="Regist" runat="server" Text="Button" OnClick="Regist_Click" CssClass="btn-group"/>
+            <asp:Button ID="Regist" runat="server" Text="Button" OnClick="Regist_Click" CssClass="btn-group-justified"/>
         </div>
     </div>
 </asp:Content>

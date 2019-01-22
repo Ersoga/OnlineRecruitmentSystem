@@ -30,11 +30,15 @@ namespace OnlineRecuitmentSystemBLL
         {
             if(this.ValidationUser(user))
             {
-                return user.UserName;
+                Models.UserTable UserInfo = UserDB.Select(user.PhoneNumber);
+                if (UserInfo.Password.Trim() == user.Password)
+                    return UserDB.Select(user.PhoneNumber).UserName;
+                else
+                    return null;
             }
             else
             {
-                return null;
+                return "该用户不存在";
             }
             //throw new NotImplementedException();
         }

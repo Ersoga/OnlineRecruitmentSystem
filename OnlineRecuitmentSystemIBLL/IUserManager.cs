@@ -14,5 +14,6 @@ namespace OnlineRecuitmentSystemIBLL
         string Login(Models.UserTable user);
         bool ValidationUser(Models.UserTable user);
         bool ValidationUser(string phoneNumber);
+        //bool ValidationUser(string phoneNumber);
     }
 }

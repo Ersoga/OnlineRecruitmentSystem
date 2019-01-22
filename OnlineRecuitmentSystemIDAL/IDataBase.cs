@@ -14,7 +14,7 @@ namespace OnlineRecuitmentSystemIDAL
         int Delete(string PhoneNumber);
         void Alter(Models.UserTable user);
         Models.UserTable Select(string phone);
-        int Execute();
+        //int Execute();
         //ArraySegment<Models.UserTable> Select(string userName);
     }
 }
