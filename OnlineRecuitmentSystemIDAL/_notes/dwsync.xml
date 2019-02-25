@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="IDataBase.cs" server="134.175.226.15" local="131928047274114908" remote="131945386200000000" Dst="0" />
+<file name="OnlineRecuitmentSystemIDAL.csproj" server="134.175.226.15" local="131934133236120297" remote="131945386200000000" Dst="0" />
+<file name="ICommand.cs" server="134.175.226.15" local="131934133548319933" remote="131945386200000000" Dst="0" />
+<file name="IConnection.cs" server="134.175.226.15" local="131934062651628757" remote="131945386200000000" Dst="0" />
+<file name="IParameterCreate.cs" server="134.175.226.15" local="131934133235280772" remote="131945386200000000" Dst="0" />
+<file name="ITransactionControl.cs" server="134.175.226.15" local="131934133235880430" remote="131945386200000000" Dst="0" />
+</dwsync>

@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,15 +10,16 @@ using OnlineRecuitmentSystemIBLL;
 using OnlineRecuitmentSystemDAL;
 using OnlineRecuitmentSystemIDAL;
 using Models;
-using System.Data.SqlClient;
 
 namespace OnlineRecuitmentSystemBLL
 {
     public class UserManager : IUserManager
-    {
+    { 
+         
         IDataBase UserDB = new SqlServer();
+        ParameterFactory parameterFactory = new OnlineRecuitmentSystemDAL.ParameterFactory();
         public bool DeleteUser(string PhoneNumber)
-        {
+        { 
             if(this.ValidationUser(PhoneNumber))
             {
                 UserDB.Delete(PhoneNumber);
@@ -30,9 +34,9 @@ namespace OnlineRecuitmentSystemBLL
         {
             if(this.ValidationUser(user))
             {
-                Models.UserTable UserInfo = UserDB.Select(user.PhoneNumber);
+                Models.UserTable UserInfo = UserDB.Select(user.PhoneNumber)[0];
                 if (UserInfo.Password.Trim() == user.Password)
-                    return UserDB.Select(user.PhoneNumber).UserName;
+                    return UserDB.Select(user.PhoneNumber)[0].UserName;
                 else
                     return null;
             }
@@ -43,6 +47,7 @@ namespace OnlineRecuitmentSystemBLL
             //throw new NotImplementedException();
         }
 
+          
         public bool RegistUser(UserTable user)
         {
             if(!this.ValidationUser(user))
@@ -60,20 +65,26 @@ namespace OnlineRecuitmentSystemBLL
         /// <returns></returns>
         public bool ValidationUser(UserTable user)
         {
-            //string sql = "select * from UserTable where phoneNumber = @phoneNumber;";
+            string sql = "select count(*) from UserTable where PhoneNumber = @phoneNumber;";
             //SqlParameter[] parameters = new SqlParameter[1];
             //parameters[0] = new SqlParameter("@phoneNumber", user.PhoneNumber);
-            if (UserDB.Select(user.PhoneNumber)!=null)
+            // if (UserDB.Select(user.PhoneNumber)!=null)
+            // {
+            //     return true;
+            // }
+            // return false;
+            //throw new NotImplementedException();
+            if((int)UserDB.ExecuteScalar(sql, parameterFactory.Create("@phoneNumber", DbType.String, user.PhoneNumber)) > 0)
             {
                 return true;
             }
             return false;
-            //throw new NotImplementedException();
         }
 
         public bool ValidationUser(string phoneNumber)
         {
-            if (UserDB.Select(phoneNumber) != null)
+            string sql = "select count(*) from UserTable where PhoneNumber = @phoneNumber;";
+            if ((int)UserDB.ExecuteScalar(sql,parameterFactory.Create("@phoneNumber",DbType.String,phoneNumber))>0)
             {
                 return true;
             }

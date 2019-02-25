@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="About.aspx" server="134.175.226.15" local="131865843063295816" remote="131926493400000000" Dst="0" />
+<file name="About.aspx.cs" server="134.175.226.15" local="131865843077237820" remote="131926493400000000" Dst="0" />
+<file name="About.aspx.designer.cs" server="134.175.226.15" local="131865843077477687" remote="131926493400000000" Dst="0" />
+<file name="Contact.aspx" server="134.175.226.15" local="131932448763914154" remote="131945385000000000" Dst="0" />
+<file name="Contact.aspx.cs" server="134.175.226.15" local="131865843077667581" remote="131926495800000000" Dst="0" />
+<file name="Contact.aspx.designer.cs" server="134.175.226.15" local="131932448768251694" remote="131945385000000000" Dst="0" />
+<file name="Bundle.config" server="134.175.226.15" local="131865843063805531" remote="131926496400000000" Dst="0" />
+<file name="Default.aspx.cs" server="134.175.226.15" local="131865843078137311" remote="131926496400000000" Dst="0" />
+<file name="Default.aspx" server="134.175.226.15" local="131865843064025399" remote="131926496400000000" Dst="0" />
+<file name="Default.aspx.designer.cs" server="134.175.226.15" local="131865843078297215" remote="131926496400000000" Dst="0" />
+<file name="favicon.ico" server="134.175.226.15" local="131865843064185307" remote="131926496400000000" Dst="0" />
+<file name="Global.asax" server="134.175.226.15" local="131865843064235275" remote="131926496400000000" Dst="0" />
+<file name="Global.asax.cs" server="134.175.226.15" local="131924452090659092" remote="131926496400000000" Dst="0" />
+<file name="HomePage.aspx" server="134.175.226.15" local="131932508677231051" remote="131945385000000000" Dst="0" />
+<file name="HomePage.aspx.designer.cs" server="134.175.226.15" local="131932408788653254" remote="131945385000000000" Dst="0" />
+<file name="HomePage.aspx.cs" server="134.175.226.15" local="131928051860855183" remote="131945385000000000" Dst="0" />
+<file name="Login.aspx" server="134.175.226.15" local="131932533505792939" remote="131945385000000000" Dst="0" />
+<file name="Login.aspx.cs" server="134.175.226.15" local="131927090410333254" remote="131945385000000000" Dst="0" />
+<file name="Login.aspx.designer.cs" server="134.175.226.15" local="131924536832732471" remote="131926496400000000" Dst="0" />
+<file name="OnlineRecruitmentSystem.csproj.user" server="134.175.226.15" local="131932556305753826" remote="131945385000000000" Dst="0" />
+<file name="OnlineRecruitmentSystem.csproj" server="134.175.226.15" local="131932556305653881" remote="131945385000000000" Dst="0" />
+<file name="packages.config" server="134.175.226.15" local="131920224767473152" remote="131926496400000000" Dst="0" />
+<file name="Recovery.aspx" server="134.175.226.15" local="131932400043754585" remote="131945385000000000" Dst="0" />
+<file name="Recovery.aspx.cs" server="134.175.226.15" local="131878916705445093" remote="131926496400000000" Dst="0" />
+<file name="Recovery.aspx.designer.cs" server="134.175.226.15" local="131928053936860301" remote="131945385000000000" Dst="0" />
+<file name="Register.aspx" server="134.175.226.15" local="131926385318356992" remote="131926496400000000" Dst="0" />
+<file name="Register.aspx.cs" server="134.175.226.15" local="131926409975423453" remote="131926496400000000" Dst="0" />
+<file name="Register.aspx.designer.cs" server="134.175.226.15" local="131924644765084152" remote="131926496400000000" Dst="0" />
+<file name="Site.Master" server="134.175.226.15" local="131932535611826499" remote="131945385000000000" Dst="0" />
+<file name="Site.Master.cs" server="134.175.226.15" local="131927910768581498" remote="131945385000000000" Dst="0" />
+<file name="Site.Master.designer.cs" server="134.175.226.15" local="131927898798838790" remote="131945385000000000" Dst="0" />
+<file name="Site.Mobile.Master" server="134.175.226.15" local="131865843400292722" remote="131926496400000000" Dst="0" />
+<file name="Site.Mobile.Master.cs" server="134.175.226.15" local="131865843402041699" remote="131926496400000000" Dst="0" />
+<file name="Site.Mobile.Master.designer.cs" server="134.175.226.15" local="131865843401132249" remote="131926496400000000" Dst="0" />
+<file name="ViewSwitcher.ascx" server="134.175.226.15" local="131865843395430925" remote="131926496400000000" Dst="0" />
+<file name="ViewSwitcher.ascx.cs" server="134.175.226.15" local="131865843399683051" remote="131926496400000000" Dst="0" />
+<file name="Web.config" server="134.175.226.15" local="131925650592539936" remote="131945385000000000" Dst="0" />
+<file name="Web.Debug.config" server="134.175.226.15" local="131865843116885164" remote="131926496400000000" Dst="0" />
+<file name="Web.Release.config" server="134.175.226.15" local="131865843118474248" remote="131926496400000000" Dst="0" />
+<file name="Web.sitemap" server="134.175.226.15" local="131865881044248989" remote="131945385000000000" Dst="0" />
+<file name="ViewSwitcher.ascx.designer.cs" server="134.175.226.15" local="131865843395980620" remote="131945385000000000" Dst="0" />
+<file name="Admin.aspx" server="134.175.226.15" local="131928035410150453" remote="131945385000000000" Dst="0" />
+<file name="Admin.aspx.cs" server="134.175.226.15" local="131927968498466821" remote="131945385000000000" Dst="0" />
+<file name="Admin.aspx.designer.cs" server="134.175.226.15" local="131927969125478706" remote="131945385000000000" Dst="0" />
+</dwsync>

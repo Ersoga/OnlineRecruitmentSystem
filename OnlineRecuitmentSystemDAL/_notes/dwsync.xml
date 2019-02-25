@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="OnlineRecuitmentSystemDAL.csproj" server="134.175.226.15" local="131934133237399566" remote="131945385600000000" Dst="0" />
+<file name="SqlServer.cs" server="134.175.226.15" local="131934133237139713" remote="131945385600000000" Dst="0" />
+<file name="Connection.cs" server="134.175.226.15" local="131934062602391580" remote="131945385600000000" Dst="0" />
+<file name="Command.cs" server="134.175.226.15" local="131945383774124986" remote="131945385600000000" Dst="0" />
+<file name="ParameterFactory.cs" server="134.175.226.15" local="131934133236859876" remote="131945385600000000" Dst="0" />
+<file name="TransactionControl.cs" server="134.175.226.15" local="131934133236550050" remote="131945385600000000" Dst="0" />
+</dwsync>

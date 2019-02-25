@@ -42,7 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICommand.cs" />
+    <Compile Include="IConnection.cs" />
     <Compile Include="IDataBase.cs" />
+    <Compile Include="IParameterCreate.cs" />
+    <Compile Include="ITransactionControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

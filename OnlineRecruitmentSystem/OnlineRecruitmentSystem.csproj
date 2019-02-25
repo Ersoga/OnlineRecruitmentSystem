@@ -115,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Admin.aspx" />
     <Content Include="App_Data\RecuitmentSystem.mdf" />
     <Content Include="App_Data\RecuitmentSystem_log.ldf">
       <DependentUpon>RecuitmentSystem.mdf</DependentUpon>
@@ -140,7 +141,9 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="HomePage.aspx" />
+    <Content Include="Image\1.jpg" />
     <Content Include="Image\2.jpg" />
+    <Content Include="Image\3.jpg" />
     <Content Include="Image\4.jpg" />
     <Content Include="Image\landing_page_seo_924px_1194410_easyicon.net.png" />
     <Content Include="Login.aspx" />
@@ -182,6 +185,13 @@
     <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin.aspx.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin.aspx.designer.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -275,10 +285,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BLL\" />
-    <Folder Include="IBLL\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{f67aed58-26e8-46bd-8fa5-9c0762d2d8e9}</Project>

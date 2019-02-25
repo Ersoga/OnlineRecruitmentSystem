@@ -11,7 +11,17 @@ namespace OnlineRecruitmentSystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(Session["User"]!=null)
+            {
+                Button button = new Button();
+                button.Text = string.Format("{0}", Session["User"]);
+                TableCell cell = new TableCell();
+                cell.Controls.Add(button);
+                TableRow row = new TableRow();
+                row.Cells.Add(cell);
+                this.Table1.Rows.Add(row);
+                
+            }
         }
     }
 }

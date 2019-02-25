@@ -1,34 +1,33 @@
 ﻿body {
-    background: url("../../Image/2.jpg");
-    animation-name: myfirst;
-    animation-duration: 12s;
+    /*background: url("../../Image/1.jpg");*/
+    animation-name:roll;
+    /*animation-direction:alternate;*/
+    animation-duration: 20s;
     /*变换时间*/
-    animation-delay: 2s;
+    animation-delay: 5s;
     /*动画开始时间*/
-    animation-iteration-count: infinite;
+    animation-iteration-count:infinite;
     /*下一周期循环播放*/
-    animation-play-state: running;
+    animation-play-state:running;
     /*动画开始运行*/
 }
-
-@keyframes myfirst {
+@keyframes roll{
     0% {
-        background: url("../../Image/4.jpg");
-    }
-
-    34% {
         background: url("../../Image/2.jpg");
     }
 
+    34% {
+        background: url("../../Image/3.jpg");
+    }
+
     67% {
-        background: url("../../Image/4.jpg");
+        background: url("../../Image/2.jpg");
     }
 
     100% {
         background: url("../../Image/4.jpg");
     }
 }
-
 .form {
     background: rgba(255,255,255,0.2);
     width: 400px;
@@ -43,10 +42,10 @@
     color: #ccc;
 }
 
-input[type="text"], input[type="password"] {
+/*input[type="text"], input[type="password"] {
     padding-left: 26px;
 }
 
 .checkbox {
     padding-left: 21px;
-}
+}*/

@@ -42,7 +42,9 @@ namespace OnlineRecruitmentSystem
                 else
                 {
                     e.Authenticated = true;//通过验证 
-                    Response.Redirect("/HomePage.aspx?User=" +result);
+                    Session["User"] = result;
+                    Session["Id"] = this.UserLogin.UserName;
+                    //Response.Redirect("/HomePage.aspx?User=" +Server.UrlEncode(result));
                 }
                 // e.Authenticated = true;//通过验证 
                 //Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script><location.herf='/HomePage.aspx';</script>");
