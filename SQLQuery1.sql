@@ -1,2 +1,1 @@
-﻿SELECT * from UserTable where PhoneNumber = '18852570235';
---select * from UserTable where PhoneNumber = @phoneNumber;
+﻿select * from Jobs where CollegesId in (select CollegesId from Colleges where CityId = 2);

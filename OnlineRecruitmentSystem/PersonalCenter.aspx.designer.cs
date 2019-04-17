@@ -10,42 +10,42 @@
 namespace OnlineRecruitmentSystem {
     
     
-    public partial class HoemPage {
+    public partial class PersonalCenter {
         
         /// <summary>
-        /// job_SearchMethod 控件。
+        /// Panel1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList job_SearchMethod;
+        protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// job_SerachString 控件。
+        /// PersonalInfoTable 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox job_SerachString;
+        protected global::System.Web.UI.WebControls.Table PersonalInfoTable;
         
         /// <summary>
-        /// job_Search 控件。
+        /// Row1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button job_Search;
+        protected global::System.Web.UI.WebControls.TableRow Row1;
         
         /// <summary>
-        /// job_InfoTable 控件。
+        /// Name 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table job_InfoTable;
+        protected global::System.Web.UI.WebControls.Label Name;
     }
 }

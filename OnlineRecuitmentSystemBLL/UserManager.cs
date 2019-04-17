@@ -20,14 +20,35 @@ namespace OnlineRecuitmentSystemBLL
         ParameterFactory parameterFactory = new OnlineRecuitmentSystemDAL.ParameterFactory();
         public bool DeleteUser(string PhoneNumber)
         { 
+            string sql = "Delete from UserTable where PhoneNumber=@PhoneNumber;";
             if(this.ValidationUser(PhoneNumber))
             {
-                UserDB.Delete(PhoneNumber);
-                return true;
+                if(UserDB.ExecuteNonQuery(sql,parameterFactory.Create("@PhoneNumber",DbType.String,PhoneNumber))>0)
+                {
+                    return true;
+                }
             }
             return false;
-           // Models.UserTable user = UserDB.Select(PhoneNumber);
-            //throw new NotImplementedException();
+        }
+
+        public Models.UserTable GetInfo(string key)
+        {
+            Models.UserTable user = null;
+            DataRow row = this.GetUserRow(key);
+            if(row!=null)
+            {
+                user = new UserTable();
+                user.PhoneNumber = (string)row["PhoneNumber"];
+                user.Password = (string)row["Password"];
+                user.RegistrationTime = (DateTime)row["RegisterTime"];
+                user.Type = (string)row["Type"];
+                user.UserName = (string)row["UserName"];
+                return user;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public string Login(UserTable user)
@@ -35,25 +56,51 @@ namespace OnlineRecuitmentSystemBLL
             if(this.ValidationUser(user))
             {
                 Models.UserTable UserInfo = UserDB.Select(user.PhoneNumber)[0];
-                if (UserInfo.Password.Trim() == user.Password)
-                    return UserDB.Select(user.PhoneNumber)[0].UserName;
+                string sql = "select * from UserTable where PhoneNumber = @PhoneNumber;";
+                
+                DataTable table = UserDB.ExecuteDataTable(sql,parameterFactory.Create("@PhoneNumber",DbType.String,user.PhoneNumber));
+                DataRow row = table.Select("PhoneNumber = "+user.PhoneNumber)[0];
+                //if (UserInfo.Password.Trim() == user.Password)
+                //    return UserDB.Select(user.PhoneNumber)[0].UserName;
+                //else
+                //    return null;
+                if(row["Password"].ToString().Trim()==user.Password)
+                {
+                    return (string)row["UserName"];
+                }
                 else
+                {
                     return null;
+                }
             }
             else
             {
                 return "该用户不存在";
             }
-            //throw new NotImplementedException();
         }
 
-          
+        public string Login(string userName, string password)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool RegistUser(UserTable user)
         {
+            string sql = "insert into UserTable values(@PhoneNumber,@UserName,@Password,@Type,@RegistrationTime);";
+            SqlParameter[] sqlParameters = new SqlParameter[]
+                {
+                    (SqlParameter)parameterFactory.Create("@PhoneNumber",DbType.String,user.PhoneNumber),
+                    (SqlParameter)parameterFactory.Create("@UserName",DbType.String,user.UserName),
+                    (SqlParameter)parameterFactory.Create("@Password",DbType.String,user.Password),
+                    (SqlParameter)parameterFactory.Create("@RegistrationTime",DbType.String,user.RegistrationTime),
+
+                };
             if(!this.ValidationUser(user))
             {
-                UserDB.Insert(user);
-                return true;
+                if(UserDB.ExecuteNonQuery(sql,sqlParameters)>0)
+                {
+                    return true;
+                }
             }
             return false;
             //throw new NotImplementedException();
@@ -66,14 +113,6 @@ namespace OnlineRecuitmentSystemBLL
         public bool ValidationUser(UserTable user)
         {
             string sql = "select count(*) from UserTable where PhoneNumber = @phoneNumber;";
-            //SqlParameter[] parameters = new SqlParameter[1];
-            //parameters[0] = new SqlParameter("@phoneNumber", user.PhoneNumber);
-            // if (UserDB.Select(user.PhoneNumber)!=null)
-            // {
-            //     return true;
-            // }
-            // return false;
-            //throw new NotImplementedException();
             if((int)UserDB.ExecuteScalar(sql, parameterFactory.Create("@phoneNumber", DbType.String, user.PhoneNumber)) > 0)
             {
                 return true;
@@ -89,7 +128,15 @@ namespace OnlineRecuitmentSystemBLL
                 return true;
             }
             return false;
-            //throw new NotImplementedException();
+        }
+        private DataRow GetUserRow(string key)
+        {
+            string sql = "select * from UserTable where PhoneNumber = @PhoneNumber;";
+            DataTable table = new DataTable();
+            table = UserDB.ExecuteDataTable(sql, parameterFactory.Create("@PhoneNumber", DbType.String, key));
+            if (table.Rows.Count == 1)
+                return table.Rows[0];
+            return null;
         }
     }
 }

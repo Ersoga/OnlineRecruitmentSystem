@@ -13,22 +13,40 @@ namespace OnlineRecruitmentSystem {
     public partial class SiteMaster {
         
         /// <summary>
-        /// LoginName 控件。
+        /// MainMenu 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink LoginName;
+        protected global::System.Web.UI.WebControls.Menu MainMenu;
         
         /// <summary>
-        /// Register 控件。
+        /// navbarCollapsse 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor Register;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl navbarCollapsse;
+        
+        /// <summary>
+        /// UserLogin 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton UserLogin;
+        
+        /// <summary>
+        /// SchoolLogin 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton SchoolLogin;
         
         /// <summary>
         /// MainContent 控件。

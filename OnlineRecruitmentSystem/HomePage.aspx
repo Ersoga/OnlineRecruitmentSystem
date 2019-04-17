@@ -12,50 +12,17 @@
             <p><a href="http://www.asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
         </div>
         <div class="row">
-            <div class="col-xs-4">
-                <h2 class="page-header">区域一
-                </h2>
-                <p>
-                    Bootstrap has a few easy ways to quickly get started, each one appealing
-                to a different skill level and use case. Read through to see what suits
-                your particular needs.
-                </p>
-                <%--<p><iframe width="300" height="300" src="https://cybermap.kaspersky.com/cn/widget/dynamic/dark" frameborder="0" ></iframe></p>--%>
-            </div>
-            <div class="col-xs-4">
-                <h2 class="page-header">区域二
-                </h2>
-                <p>
-                    If you work with Bootstrap's uncompiled source code, you need to compile
-                the LESS files to produce usable CSS files. For compiling LESS files into
-                CSS, we only officially support Recess, which is Twitter's CSS hinter based
-                on less.js.
-                </p>
-            </div>
-            <div class="col-xs-4">
-                <h2 class="page-header">区域三
-                </h2>
-                <p>
-                    Within the download you'll find the following directories and files, logically
-                grouping common resources and providing both compiled and minified variations.
-                </p>
-            </div>
+            <asp:DropDownList ID="job_SearchMethod" runat="server" Height="49px" Width="104px">
+                <asp:ListItem Value="0">City</asp:ListItem>
+                <asp:ListItem Value="1">学校名</asp:ListItem>
+                <asp:ListItem Value="2">岗位名</asp:ListItem>
+            </asp:DropDownList>
+            <asp:TextBox ID="job_SerachString" runat="server" Height="16px" Width="161px"></asp:TextBox>
+            <asp:Button ID="job_Search" runat="server" Text="搜索" Height="20px" OnClick="job_Search_Click" Width="87px" />
+            <br />
+            <asp:Table ID="job_InfoTable" runat="server" Height="140px" Width="1147px">
+            </asp:Table>
         </div>
-        <asp:Table ID="Table1" runat="server">
-            <asp:TableRow CssClass="row">
-                <asp:TableCell CssClass="col-xs-4">
-                    <h2 class="page-header">区域二
-                </h2>
-                <p>
-                    If you work with Bootstrap's uncompiled source code, you need to compile
-                the LESS files to produce usable CSS files. For compiling LESS files into
-                CSS, we only officially support Recess, which is Twitter's CSS hinter based
-                on less.js.
-                </p>
-                </asp:TableCell>
-                <asp:TableCell>b</asp:TableCell>
-            </asp:TableRow>
-        </asp:Table>
     </div>
 
 </asp:Content>

@@ -12,21 +12,23 @@ namespace Models
     using System;
     using System.Collections.Generic;
     
-    public partial class UserTable
+    public partial class College
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UserTable()
+        public College()
         {
-            this.DeliveryTables = new HashSet<DeliveryTable>();
+            this.Jobs = new HashSet<Job>();
         }
     
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string Type { get; set; }
-        public System.DateTime RegistrationTime { get; set; }
-        public string PhoneNumber { get; set; }
+        public string CollegesId { get; set; }
+        public string CollegesName { get; set; }
+        public string Contact { get; set; }
+        public bool IsVerification { get; set; }
+        public System.DateTime RegisterTime { get; set; }
+        public int CityId { get; set; }
     
+        public virtual City City { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DeliveryTable> DeliveryTables { get; set; }
+        public virtual ICollection<Job> Jobs { get; set; }
     }
 }

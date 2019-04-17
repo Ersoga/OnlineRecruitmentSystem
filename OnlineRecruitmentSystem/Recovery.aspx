@@ -17,7 +17,7 @@
             <asp:TextBox ID="RePassword" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
             <br />
             
-            <asp:Button ID="RecoPassword" runat="server" Text="确定" CssClass="btn-group-vertical" Width ="120"/>
+            <asp:Button ID="RecoPassword" runat="server" Text="确定" CssClass="btn-group" Width ="20"/>
         </div>
     </div>
 </asp:Content>

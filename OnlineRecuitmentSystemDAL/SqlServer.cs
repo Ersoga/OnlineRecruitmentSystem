@@ -21,7 +21,6 @@ namespace OnlineRecuitmentSystemDAL
         public SqlServer()
         {
             this.ConnectStr = ConfigurationManager.ConnectionStrings["sqlConnectionDAL"].ToString();
-            
         }
         public SqlServer(string connectStr)
         {
@@ -66,7 +65,6 @@ namespace OnlineRecuitmentSystemDAL
             // {
             //     newCommand.CommandTimeout = commandTimeOut;
             // }
-
             if (parameters != null)
                 command.Parameters.AddRange(parameters);
 
@@ -127,7 +125,6 @@ namespace OnlineRecuitmentSystemDAL
             int row = this.Execute(sql, parameters);
             this.ConnectionClose();
             return row;
-            //throw new NotImplementedException();
         }
 
         public int Insert(UserTable user)
@@ -145,13 +142,11 @@ namespace OnlineRecuitmentSystemDAL
             int row = this.Execute(sql, parameters);
             this.ConnectionClose();
             return row;
-            //throw new NotImplementedException();
         }
 
         public UserTable Select(string sql, params SqlParameter[] parameter)
         {
             UserTable table = new UserTable();
-            //string sql = "select * from UserTable where phoneNumber = @phoneNumber;";
             this.ConnectionOpen();
             SqlDataReader sqlData = this.Read(sql, parameter);
             if(this.Execute(sql, parameter)==1)
@@ -167,7 +162,6 @@ namespace OnlineRecuitmentSystemDAL
             }
             this.ConnectionClose();
             return table;
-            //throw new NotImplementedException();
         }
 
         
@@ -215,12 +209,10 @@ namespace OnlineRecuitmentSystemDAL
             }
             else
             {
-                //throw new ArgumentException("参数无效");//参数无效
                 return null;
             }
             this.ConnectionClose();
             return tableList;
-            //throw new NotImplementedException();
         }
         public int Delete(string PhoneNumber)
         {
@@ -270,7 +262,7 @@ namespace OnlineRecuitmentSystemDAL
 
         public DataTable ExecuteDataTable(string commandText, params DbParameter[] parameters)
         {
-            DataTable table;
+            DataTable table = null;
             DbCommand command = null;
             try
             {

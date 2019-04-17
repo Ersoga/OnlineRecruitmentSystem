@@ -5,7 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="27c7540ad6ee49ebbf4e1efdc94f8eac" Name="Diagram1">
-        <EntityTypeShape EntityType="RecuitmentSystemModel.UserTable" Width="2.625" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecuitmentSystemModel.UserTable" Width="2.625" PointX="0.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecuitmentSystemModel.City" Width="1.5" PointX="0.75" PointY="3.625" />
+        <EntityTypeShape EntityType="RecuitmentSystemModel.College" Width="1.5" PointX="3" PointY="3.375" />
+        <EntityTypeShape EntityType="RecuitmentSystemModel.DeliveryTable" Width="1.5" PointX="7.5" PointY="1.375" />
+        <EntityTypeShape EntityType="RecuitmentSystemModel.Job" Width="1.5" PointX="5.25" PointY="3.375" />
+        <AssociationConnector Association="RecuitmentSystemModel.FK_Colleges_City" />
+        <AssociationConnector Association="RecuitmentSystemModel.FK_Jobs_Colleges" />
+        <AssociationConnector Association="RecuitmentSystemModel.FK_DeliveryTable_Jobs_JobsName_CollegesId" />
+        <AssociationConnector Association="RecuitmentSystemModel.FK_DeliveryTable_UserTable" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

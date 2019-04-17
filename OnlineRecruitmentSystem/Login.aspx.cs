@@ -1,4 +1,5 @@
 ﻿using OnlineRecuitmentSystemBLL;
+using OnlineRecuitmentSystemIBLL;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,10 +15,19 @@ namespace OnlineRecruitmentSystem
     public partial class Login : System.Web.UI.Page
     {
         //DataOpertion UsersData = new DataOpertion(ConfigurationManager.ConnectionStrings["sqlConnectionL"].ToString());
+        AUser user = null;
         UserManager userManager = new UserManager();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            string type = Request.QueryString["type"].ToString();
+            if(type == "user")
+            {
+                Session["type"] = 
+            }
+            if(Session["User"] ==null)
+            {
+                Session["User"] = user;
+            }
         }
 
         protected void Page_Init(object sender,EventArgs e)

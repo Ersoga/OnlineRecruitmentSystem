@@ -5,18 +5,130 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="RecuitmentSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Pid" Type="int" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Type" Type="int" />
+        </EntityType>
+        <EntityType Name="Colleges">
+          <Key>
+            <PropertyRef Name="CollegesId" />
+          </Key>
+          <Property Name="CollegesId" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="CollegesName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsVerification" Type="bit" Nullable="false" />
+          <Property Name="RegisterTime" Type="datetime" Nullable="false" />
+          <Property Name="CityId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DeliveryTable">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="CollegesId" />
+            <PropertyRef Name="JobsName" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="CollegesId" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="JobsName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DeliveryTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Jobs">
+          <Key>
+            <PropertyRef Name="JobsName" />
+            <PropertyRef Name="CollegesId" />
+          </Key>
+          <Property Name="JobsName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CollegesId" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="ReleaseTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="500" />
+        </EntityType>
         <EntityType Name="UserTable">
           <Key>
             <PropertyRef Name="PhoneNumber" />
           </Key>
-          <Property Name="PhoneNumber" Type="nchar" MaxLength="11" Nullable="false" />
-          <Property Name="UserName" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Password" Type="nchar" MaxLength="16" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="16" Nullable="false" />
           <Property Name="Type" Type="text" Nullable="false" />
           <Property Name="RegistrationTime" Type="datetime" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Colleges_City">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Colleges" Type="Self.Colleges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Colleges">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeliveryTable_Jobs_JobsName&amp;CollegesId">
+          <End Role="Jobs" Type="Self.Jobs" Multiplicity="1" />
+          <End Role="DeliveryTable" Type="Self.DeliveryTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jobs">
+              <PropertyRef Name="JobsName" />
+              <PropertyRef Name="CollegesId" />
+            </Principal>
+            <Dependent Role="DeliveryTable">
+              <PropertyRef Name="JobsName" />
+              <PropertyRef Name="CollegesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeliveryTable_UserTable">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+          <End Role="DeliveryTable" Type="Self.DeliveryTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="PhoneNumber" />
+            </Principal>
+            <Dependent Role="DeliveryTable">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jobs_Colleges">
+          <End Role="Colleges" Type="Self.Colleges" Multiplicity="1" />
+          <End Role="Jobs" Type="Self.Jobs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colleges">
+              <PropertyRef Name="CollegesId" />
+            </Principal>
+            <Dependent Role="Jobs">
+              <PropertyRef Name="CollegesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="RecuitmentSystemModelStoreContainer">
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Colleges" EntityType="Self.Colleges" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeliveryTable" EntityType="Self.DeliveryTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Jobs" EntityType="Self.Jobs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Colleges_City" Association="Self.FK_Colleges_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Colleges" EntitySet="Colleges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeliveryTable_Jobs_JobsName&amp;CollegesId" Association="Self.FK_DeliveryTable_Jobs_JobsName&amp;CollegesId">
+            <End Role="Jobs" EntitySet="Jobs" />
+            <End Role="DeliveryTable" EntitySet="DeliveryTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeliveryTable_UserTable" Association="Self.FK_DeliveryTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="DeliveryTable" EntitySet="DeliveryTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jobs_Colleges" Association="Self.FK_Jobs_Colleges">
+            <End Role="Colleges" EntitySet="Colleges" />
+            <End Role="Jobs" EntitySet="Jobs" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -26,15 +138,135 @@
           <Key>
             <PropertyRef Name="PhoneNumber" />
           </Key>
-          <Property Name="UserName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="16" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="RegistrationTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DeliveryTables" Relationship="RecuitmentSystemModel.FK_DeliveryTable_UserTable" FromRole="UserTable" ToRole="DeliveryTable" />
         </EntityType>
         <EntityContainer Name="RecuitmentSystemEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="UserTables" EntityType="Self.UserTable" />
+          <EntitySet Name="Cities" EntityType="RecuitmentSystemModel.City" />
+          <EntitySet Name="Colleges" EntityType="RecuitmentSystemModel.College" />
+          <EntitySet Name="DeliveryTables" EntityType="RecuitmentSystemModel.DeliveryTable" />
+          <EntitySet Name="Jobs" EntityType="RecuitmentSystemModel.Job" />
+          <AssociationSet Name="FK_Colleges_City" Association="RecuitmentSystemModel.FK_Colleges_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="College" EntitySet="Colleges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jobs_Colleges" Association="RecuitmentSystemModel.FK_Jobs_Colleges">
+            <End Role="College" EntitySet="Colleges" />
+            <End Role="Job" EntitySet="Jobs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeliveryTable_Jobs_JobsName_CollegesId" Association="RecuitmentSystemModel.FK_DeliveryTable_Jobs_JobsName_CollegesId">
+            <End Role="Job" EntitySet="Jobs" />
+            <End Role="DeliveryTable" EntitySet="DeliveryTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeliveryTable_UserTable" Association="RecuitmentSystemModel.FK_DeliveryTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTables" />
+            <End Role="DeliveryTable" EntitySet="DeliveryTables" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Pid" Type="Int32" />
+          <Property Name="CityName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" />
+          <NavigationProperty Name="Colleges" Relationship="RecuitmentSystemModel.FK_Colleges_City" FromRole="City" ToRole="College" />
+        </EntityType>
+        <EntityType Name="College">
+          <Key>
+            <PropertyRef Name="CollegesId" />
+          </Key>
+          <Property Name="CollegesId" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="CollegesName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Contact" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsVerification" Type="Boolean" Nullable="false" />
+          <Property Name="RegisterTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="RecuitmentSystemModel.FK_Colleges_City" FromRole="College" ToRole="City" />
+          <NavigationProperty Name="Jobs" Relationship="RecuitmentSystemModel.FK_Jobs_Colleges" FromRole="College" ToRole="Job" />
+        </EntityType>
+        <EntityType Name="DeliveryTable">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="CollegesId" />
+            <PropertyRef Name="JobsName" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="CollegesId" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="JobsName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DeliveryTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Job" Relationship="RecuitmentSystemModel.FK_DeliveryTable_Jobs_JobsName_CollegesId" FromRole="DeliveryTable" ToRole="Job" />
+          <NavigationProperty Name="UserTable" Relationship="RecuitmentSystemModel.FK_DeliveryTable_UserTable" FromRole="DeliveryTable" ToRole="UserTable" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="JobsName" />
+            <PropertyRef Name="CollegesId" />
+          </Key>
+          <Property Name="JobsName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CollegesId" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="ReleaseTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="Contact" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="College" Relationship="RecuitmentSystemModel.FK_Jobs_Colleges" FromRole="Job" ToRole="College" />
+          <NavigationProperty Name="DeliveryTables" Relationship="RecuitmentSystemModel.FK_DeliveryTable_Jobs_JobsName_CollegesId" FromRole="Job" ToRole="DeliveryTable" />
+        </EntityType>
+        <Association Name="FK_Colleges_City">
+          <End Type="RecuitmentSystemModel.City" Role="City" Multiplicity="1" />
+          <End Type="RecuitmentSystemModel.College" Role="College" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="College">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jobs_Colleges">
+          <End Type="RecuitmentSystemModel.College" Role="College" Multiplicity="1" />
+          <End Type="RecuitmentSystemModel.Job" Role="Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="College">
+              <PropertyRef Name="CollegesId" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="CollegesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeliveryTable_Jobs_JobsName_CollegesId">
+          <End Type="RecuitmentSystemModel.Job" Role="Job" Multiplicity="1" />
+          <End Type="RecuitmentSystemModel.DeliveryTable" Role="DeliveryTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="JobsName" />
+              <PropertyRef Name="CollegesId" />
+            </Principal>
+            <Dependent Role="DeliveryTable">
+              <PropertyRef Name="JobsName" />
+              <PropertyRef Name="CollegesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeliveryTable_UserTable">
+          <End Type="RecuitmentSystemModel.UserTable" Role="UserTable" Multiplicity="1" />
+          <End Type="RecuitmentSystemModel.DeliveryTable" Role="DeliveryTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="PhoneNumber" />
+            </Principal>
+            <Dependent Role="DeliveryTable">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -49,6 +281,49 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="RegistrationTime" ColumnName="RegistrationTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="RecuitmentSystemModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="Pid" ColumnName="Pid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Colleges">
+            <EntityTypeMapping TypeName="RecuitmentSystemModel.College">
+              <MappingFragment StoreEntitySet="Colleges">
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="RegisterTime" ColumnName="RegisterTime" />
+                <ScalarProperty Name="IsVerification" ColumnName="IsVerification" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="CollegesName" ColumnName="CollegesName" />
+                <ScalarProperty Name="CollegesId" ColumnName="CollegesId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeliveryTables">
+            <EntityTypeMapping TypeName="RecuitmentSystemModel.DeliveryTable">
+              <MappingFragment StoreEntitySet="DeliveryTable">
+                <ScalarProperty Name="DeliveryTime" ColumnName="DeliveryTime" />
+                <ScalarProperty Name="JobsName" ColumnName="JobsName" />
+                <ScalarProperty Name="CollegesId" ColumnName="CollegesId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jobs">
+            <EntityTypeMapping TypeName="RecuitmentSystemModel.Job">
+              <MappingFragment StoreEntitySet="Jobs">
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="ReleaseTime" ColumnName="ReleaseTime" />
+                <ScalarProperty Name="CollegesId" ColumnName="CollegesId" />
+                <ScalarProperty Name="JobsName" ColumnName="JobsName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

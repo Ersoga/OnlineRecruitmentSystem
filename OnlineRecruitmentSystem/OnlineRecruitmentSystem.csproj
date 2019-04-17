@@ -146,9 +146,18 @@
     <Content Include="Image\3.jpg" />
     <Content Include="Image\4.jpg" />
     <Content Include="Image\landing_page_seo_924px_1194410_easyicon.net.png" />
+    <Content Include="Image\头像\1043147703584fa97c65b570db4ffffd.png" />
+    <Content Include="Image\头像\10ea9d5758b1d44adcdb458e8bd5f8dc.jpeg" />
+    <Content Include="Image\头像\70a1fa03f2d64b87193118efe9d8afc2.jpeg" />
+    <Content Include="Image\头像\7e691fb2d4c39da4f2ce79078f60ef0d.png" />
+    <Content Include="Image\头像\ef4d08968173dc468098ad0e83785c8a.jpeg" />
+    <Content Include="Image\头像\f00e45d340faed0add97afa7df1abdeb.jpg" />
+    <Content Include="Image\头像\f9a8b87aeabff8c791050232fdc2286e.jpg" />
     <Content Include="Login.aspx" />
+    <Content Include="PersonalCenter.aspx" />
     <Content Include="Recovery.aspx" />
     <Content Include="Register.aspx" />
+    <Content Include="SchoolRegister.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -208,7 +217,6 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DLL\Data.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -226,13 +234,19 @@
     <Compile Include="HomePage.aspx.designer.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="IDLL\IData.cs" />
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalCenter.aspx.cs">
+      <DependentUpon>PersonalCenter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PersonalCenter.aspx.designer.cs">
+      <DependentUpon>PersonalCenter.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recovery.aspx.cs">
@@ -248,6 +262,13 @@
     </Compile>
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SchoolRegister.aspx.cs">
+      <DependentUpon>SchoolRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SchoolRegister.aspx.designer.cs">
+      <DependentUpon>SchoolRegister.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
