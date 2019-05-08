@@ -74,10 +74,19 @@
     <Compile Include="DeliveryTable.cs">
       <DependentUpon>Users.tt</DependentUpon>
     </Compile>
-    <Compile Include="Job.cs">
+    <Compile Include="EducationBackground.cs">
+      <DependentUpon>Users.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JobIntension.cs">
+      <DependentUpon>Users.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Jobs.cs">
       <DependentUpon>Users.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resume.cs">
+      <DependentUpon>Users.tt</DependentUpon>
+    </Compile>
     <Compile Include="Users.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -94,6 +103,9 @@
       <DependentUpon>Users.edmx</DependentUpon>
     </Compile>
     <Compile Include="UserTable.cs">
+      <DependentUpon>Users.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WorkExperience.cs">
       <DependentUpon>Users.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -128,6 +140,7 @@
     <None Include="packages.config" />
     <None Include="Users.edmx.diagram">
       <DependentUpon>Users.edmx</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>

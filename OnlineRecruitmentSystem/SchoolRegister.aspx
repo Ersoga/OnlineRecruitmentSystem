@@ -11,15 +11,19 @@
             <asp:TextBox ID="SchoolName_Text" runat="server" CssClass="form-control" Width="615px"></asp:TextBox>
             <br />
             <asp:Label ID="SchoolRegion" runat="server" Text="地区：" CssClass="form-group-lg"></asp:Label>
-            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="dropdown-toggle" DataSourceID="SqlDataSource1" DataTextField="CityName" DataValueField="Id" Height="25px" Width="100px" AutoPostBack="True" ClientIDMode="Static" DataMember="DefaultView" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged1" >
-                <asp:ListItem></asp:ListItem>
-            </asp:DropDownList>
-            <asp:DropDownList ID="DropDownList2" runat="server" CssClass="dropdown-toggle" DataSourceID="SqlDataSource2" DataTextField="CityName" DataValueField="Id" Height="25px" Width="100px" DataMember="DefaultView" AutoPostBack="True" ClientIDMode="Static" AppendDataBoundItems="True">
-                <asp:ListItem></asp:ListItem>
-            </asp:DropDownList>
-            <asp:DropDownList ID="DropDownList3" runat="server" CssClass="dropdown-toggle" DataSourceID="SqlDataSource3" DataTextField="CityName" DataValueField="Id" Height="25px" Width="100px" AutoPostBack="True" ClientIDMode="Static" DataMember="DefaultView">
-                <asp:ListItem></asp:ListItem>
-            </asp:DropDownList>
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <ContentTemplate>
+                    <asp:DropDownList ID="DropDownList1" runat="server" CssClass="dropdown-toggle" DataSourceID="SqlDataSource1" DataTextField="CityName" DataValueField="Id" Height="25px" Width="100px" AutoPostBack="True" ClientIDMode="Static" DataMember="DefaultView" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged1">
+                        <asp:ListItem></asp:ListItem>
+                    </asp:DropDownList>
+                    <asp:DropDownList ID="DropDownList2" runat="server" CssClass="dropdown-toggle" DataSourceID="SqlDataSource2" DataTextField="CityName" DataValueField="Id" Height="25px" Width="100px" DataMember="DefaultView" AutoPostBack="True" ClientIDMode="Static" AppendDataBoundItems="True">
+                        <asp:ListItem></asp:ListItem>
+                    </asp:DropDownList>
+                    <asp:DropDownList ID="DropDownList3" runat="server" CssClass="dropdown-toggle" DataSourceID="SqlDataSource3" DataTextField="CityName" DataValueField="Id" Height="25px" Width="100px" AutoPostBack="True" ClientIDMode="Static" DataMember="DefaultView">
+                        <asp:ListItem></asp:ListItem>
+                    </asp:DropDownList>
+                </ContentTemplate>
+            </asp:UpdatePanel>
             <br />
             <br />
             <asp:Label ID="Contact" runat="server" Text="学校简介：" CssClass="form-group-sm"></asp:Label>

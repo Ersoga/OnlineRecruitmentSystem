@@ -9,13 +9,13 @@ namespace OnlineRecuitmentSystemIBLL
 {
     public enum LoginInfo
     {
-        UN_LOGIN,
-        LOGIN,
-        LOOUT,
-        LOGIN_ERROR,
-        NO_USER
+        UN_LOGIN,//未登陆
+        LOGIN,//登录
+        LOOUT,//登出
+        LOGIN_ERROR,//登录错误
+        NO_USER//没有此用户
     }
-    public abstract class AUser
+    public abstract class IUser
     {
         public ICollegesManager collegesManager { get; set; }
         public IParameterCreate parameterFactory { get; set; }
@@ -23,13 +23,13 @@ namespace OnlineRecuitmentSystemIBLL
         public LoginInfo LoginStatus { get; set; }
         public Models.UserTable UserInfo { get; set; }
         public IUserManager UserManager { get; set; }
-        public abstract List<Models.Job> SelectJobsInfoByCity(string cityName);
-        public abstract List<Models.Job> SelectJobsInfoByCollege(string collegeId);
-        public abstract List<Models.Job> SelectJobsInfoByJobName(string jobName);
+        public abstract List<Models.Jobs> SelectJobsInfoByCity(string cityName);
+        public abstract List<Models.Jobs> SelectJobsInfoByCollege(string collegeId);
+        public abstract List<Models.Jobs> SelectJobsInfoByJobName(string jobName);
         /// <summary>
         /// 随机返回count个值
         /// </summary>
         /// <returns></returns>
-        public abstract List<Models.Job> BrowseJobsInfo(int count);
+        public abstract List<Models.Jobs> BrowseJobsInfo(int count);
     }
 }

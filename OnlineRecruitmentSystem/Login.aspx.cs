@@ -14,19 +14,17 @@ namespace OnlineRecruitmentSystem
 {
     public partial class Login : System.Web.UI.Page
     {
-        //DataOpertion UsersData = new DataOpertion(ConfigurationManager.ConnectionStrings["sqlConnectionL"].ToString());
-        AUser user = null;
-        UserManager userManager = new UserManager();
+        User user = null;
         protected void Page_Load(object sender, EventArgs e)
         {
-            string type = Request.QueryString["type"].ToString();
-            if(type == "user")
+            if (Session["User"] == null)
             {
-                Session["type"] = 
+                user = new User();
+                Session["user"] = user;
             }
-            if(Session["User"] ==null)
+            else
             {
-                Session["User"] = user;
+                user = (User)Session["user"];
             }
         }
 
@@ -36,31 +34,14 @@ namespace OnlineRecruitmentSystem
         }
         protected void UserLogin_Authenticate(object sender, AuthenticateEventArgs e)
         {
-            Models.UserTable user = new Models.UserTable();
-            user.PhoneNumber = this.UserLogin.UserName;
-            user.Password = this.UserLogin.Password;
-            string result = userManager.Login(user);
-            //string strSql = "select * from UserTable where UserName=@UserName and Password=@Password";
-            //if(this.UsersData.Read(ref strSql, new SqlParameter[] { new SqlParameter("@UserName", UserLogin.UserName), new SqlParameter("@Password", UserLogin.Password) }).HasRows)
-            if (result !=null)
+            if (user.Login(this.UserLogin.UserName, this.UserLogin.Password))
             {
-                if(result=="该用户不存在")
-                {
-                    Response.Write("<script>alert('该用户不存在');</script>");
-                    e.Authenticated = false;
-                }
-                else
-                {
-                    e.Authenticated = true;//通过验证 
-                    Session["User"] = result;
-                    Session["Id"] = this.UserLogin.UserName;
-                    //Response.Redirect("/HomePage.aspx?User=" +Server.UrlEncode(result));
-                }
-                // e.Authenticated = true;//通过验证 
-                //Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script><location.herf='/HomePage.aspx';</script>");
+                user.LoginStatus = LoginInfo.LOGIN;
+                e.Authenticated = true;
             }
             else
             {
+                user.LoginStatus = LoginInfo.UN_LOGIN;
                 e.Authenticated = false;
             }
         }

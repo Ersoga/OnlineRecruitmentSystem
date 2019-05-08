@@ -40,7 +40,7 @@ namespace OnlineRecuitmentSystemBLL
                 user = new UserTable();
                 user.PhoneNumber = (string)row["PhoneNumber"];
                 user.Password = (string)row["Password"];
-                user.RegistrationTime = (DateTime)row["RegisterTime"];
+                user.RegistrationTime = (DateTime)row["RegistrationTime"];
                 user.Type = (string)row["Type"];
                 user.UserName = (string)row["UserName"];
                 return user;
@@ -87,13 +87,13 @@ namespace OnlineRecuitmentSystemBLL
         public bool RegistUser(UserTable user)
         {
             string sql = "insert into UserTable values(@PhoneNumber,@UserName,@Password,@Type,@RegistrationTime);";
-            SqlParameter[] sqlParameters = new SqlParameter[]
+            DbParameter[] sqlParameters = new DbParameter[]
                 {
-                    (SqlParameter)parameterFactory.Create("@PhoneNumber",DbType.String,user.PhoneNumber),
-                    (SqlParameter)parameterFactory.Create("@UserName",DbType.String,user.UserName),
-                    (SqlParameter)parameterFactory.Create("@Password",DbType.String,user.Password),
-                    (SqlParameter)parameterFactory.Create("@RegistrationTime",DbType.String,user.RegistrationTime),
-
+                    parameterFactory.Create("@PhoneNumber",DbType.String,user.PhoneNumber),
+                    parameterFactory.Create("@UserName",DbType.String,user.UserName),
+                    parameterFactory.Create("@Password",DbType.String,user.Password),
+                    parameterFactory.Create("@RegistrationTime",DbType.DateTime,user.RegistrationTime),
+                    parameterFactory.Create("@Type",DbType.String,user.Type)
                 };
             if(!this.ValidationUser(user))
             {

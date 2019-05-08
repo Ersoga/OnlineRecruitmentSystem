@@ -24,6 +24,7 @@
           <Property Name="IsVerification" Type="bit" Nullable="false" />
           <Property Name="RegisterTime" Type="datetime" Nullable="false" />
           <Property Name="CityId" Type="int" Nullable="false" />
+          <Property Name="Introduction" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="DeliveryTable">
           <Key>
@@ -35,6 +36,36 @@
           <Property Name="CollegesId" Type="nvarchar" MaxLength="5" Nullable="false" />
           <Property Name="JobsName" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="DeliveryTime" Type="datetime" Nullable="false" />
+          <Property Name="TrialScore" Type="float" />
+        </EntityType>
+        <EntityType Name="EducationBackground">
+          <Key>
+            <PropertyRef Name="EduID" />
+          </Key>
+          <Property Name="EduID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FromYear" Type="char" MaxLength="4" />
+          <Property Name="FromMonth" Type="char" MaxLength="2" />
+          <Property Name="ToYear" Type="char" MaxLength="4" />
+          <Property Name="ToMonth" Type="char" MaxLength="2" />
+          <Property Name="SchoolName" Type="nvarchar" MaxLength="100" />
+          <Property Name="SubMajor" Type="nvarchar" MaxLength="100" />
+          <Property Name="Degree" Type="int" />
+          <Property Name="EduDetail" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsOverSeas" Type="bit" />
+          <Property Name="ResumeID" Type="int" />
+        </EntityType>
+        <EntityType Name="JobIntension">
+          <Key>
+            <PropertyRef Name="JobIntensionId" />
+          </Key>
+          <Property Name="JobIntensionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobTerm" Type="int" />
+          <Property Name="JobArea" Type="nvarchar" MaxLength="50" />
+          <Property Name="IndustryType" Type="nvarchar" MaxLength="50" />
+          <Property Name="FunType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Salary" Type="int" />
+          <Property Name="EntryTime" Type="int" />
+          <Property Name="ResumeID" Type="int" />
         </EntityType>
         <EntityType Name="Jobs">
           <Key>
@@ -43,9 +74,42 @@
           </Key>
           <Property Name="JobsName" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="CollegesId" Type="nvarchar" MaxLength="5" Nullable="false" />
-          <Property Name="ReleaseTime" Type="datetime" />
+          <Property Name="ReleaseTime" Type="datetime" Nullable="false" />
           <Property Name="EndTime" Type="datetime" />
           <Property Name="Contact" Type="nvarchar" MaxLength="500" />
+          <Property Name="PayRangeLow" Type="float" />
+          <Property Name="PayRangeHigh" Type="float" />
+          <Property Name="TrialLectureTime" Type="datetime" />
+          <Property Name="TrialInfo" Type="nvarchar" MaxLength="500" />
+          <Property Name="Introduction" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Resume">
+          <Key>
+            <PropertyRef Name="ResumeID" />
+          </Key>
+          <Property Name="ResumeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" />
+          <Property Name="Gender" Type="int" />
+          <Property Name="YearOfBirthday" Type="char" MaxLength="4" />
+          <Property Name="MonthOfBirthday" Type="char" MaxLength="2" />
+          <Property Name="DayOfBirthday" Type="char" MaxLength="2" />
+          <Property Name="CardType" Type="int" />
+          <Property Name="IDNumber" Type="nvarchar" MaxLength="25" />
+          <Property Name="Salary" Type="int" />
+          <Property Name="CurrencyType" Type="int" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="11" />
+          <Property Name="QQ" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="80" />
+          <Property Name="PlaceOfDomicile" Type="nvarchar" MaxLength="150" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="Address" Type="nvarchar" MaxLength="150" />
+          <Property Name="Weight" Type="int" />
+          <Property Name="Height" Type="int" />
+          <Property Name="Marrige" Type="int" />
+          <Property Name="HomePage" Type="nvarchar" MaxLength="200" />
+          <Property Name="WorkYear" Type="int" />
+          <Property Name="Introduction" Type="nvarchar" MaxLength="500" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="11" />
         </EntityType>
         <EntityType Name="UserTable">
           <Key>
@@ -56,6 +120,21 @@
           <Property Name="Password" Type="nvarchar" MaxLength="16" Nullable="false" />
           <Property Name="Type" Type="text" Nullable="false" />
           <Property Name="RegistrationTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkExperience">
+          <Key>
+            <PropertyRef Name="WorkID" />
+          </Key>
+          <Property Name="WorkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FromYear" Type="char" MaxLength="4" />
+          <Property Name="FromMonth" Type="char" MaxLength="2" />
+          <Property Name="ToYear" Type="char" MaxLength="4" />
+          <Property Name="ToMonth" Type="char" MaxLength="2" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Position" Type="nvarchar" MaxLength="50" />
+          <Property Name="Responsiblity" Type="ntext" />
+          <Property Name="IsOverSeas" Type="bit" />
+          <Property Name="ResumeID" Type="int" />
         </EntityType>
         <Association Name="FK_Colleges_City">
           <End Role="City" Type="Self.City" Multiplicity="1" />
@@ -95,6 +174,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_EducationBackground_Resume">
+          <End Role="Resume" Type="Self.Resume" Multiplicity="0..1" />
+          <End Role="EducationBackground" Type="Self.EducationBackground" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resume">
+              <PropertyRef Name="ResumeID" />
+            </Principal>
+            <Dependent Role="EducationBackground">
+              <PropertyRef Name="ResumeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobIntension_Resume">
+          <End Role="Resume" Type="Self.Resume" Multiplicity="0..1" />
+          <End Role="JobIntension" Type="Self.JobIntension" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resume">
+              <PropertyRef Name="ResumeID" />
+            </Principal>
+            <Dependent Role="JobIntension">
+              <PropertyRef Name="ResumeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Jobs_Colleges">
           <End Role="Colleges" Type="Self.Colleges" Multiplicity="1" />
           <End Role="Jobs" Type="Self.Jobs" Multiplicity="*" />
@@ -107,12 +210,40 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Resume_UserTable">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="0..1" />
+          <End Role="Resume" Type="Self.Resume" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="PhoneNumber" />
+            </Principal>
+            <Dependent Role="Resume">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkExperience_Resume">
+          <End Role="Resume" Type="Self.Resume" Multiplicity="0..1" />
+          <End Role="WorkExperience" Type="Self.WorkExperience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resume">
+              <PropertyRef Name="ResumeID" />
+            </Principal>
+            <Dependent Role="WorkExperience">
+              <PropertyRef Name="ResumeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="RecuitmentSystemModelStoreContainer">
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Colleges" EntityType="Self.Colleges" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DeliveryTable" EntityType="Self.DeliveryTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EducationBackground" EntityType="Self.EducationBackground" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobIntension" EntityType="Self.JobIntension" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Jobs" EntityType="Self.Jobs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Resume" EntityType="Self.Resume" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkExperience" EntityType="Self.WorkExperience" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Colleges_City" Association="Self.FK_Colleges_City">
             <End Role="City" EntitySet="City" />
             <End Role="Colleges" EntitySet="Colleges" />
@@ -125,9 +256,25 @@
             <End Role="UserTable" EntitySet="UserTable" />
             <End Role="DeliveryTable" EntitySet="DeliveryTable" />
           </AssociationSet>
+          <AssociationSet Name="FK_EducationBackground_Resume" Association="Self.FK_EducationBackground_Resume">
+            <End Role="Resume" EntitySet="Resume" />
+            <End Role="EducationBackground" EntitySet="EducationBackground" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobIntension_Resume" Association="Self.FK_JobIntension_Resume">
+            <End Role="Resume" EntitySet="Resume" />
+            <End Role="JobIntension" EntitySet="JobIntension" />
+          </AssociationSet>
           <AssociationSet Name="FK_Jobs_Colleges" Association="Self.FK_Jobs_Colleges">
             <End Role="Colleges" EntitySet="Colleges" />
             <End Role="Jobs" EntitySet="Jobs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Resume_UserTable" Association="Self.FK_Resume_UserTable">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="Resume" EntitySet="Resume" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkExperience_Resume" Association="Self.FK_WorkExperience_Resume">
+            <End Role="Resume" EntitySet="Resume" />
+            <End Role="WorkExperience" EntitySet="WorkExperience" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -144,13 +291,14 @@
           <Property Name="RegistrationTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DeliveryTables" Relationship="RecuitmentSystemModel.FK_DeliveryTable_UserTable" FromRole="UserTable" ToRole="DeliveryTable" />
+          <NavigationProperty Name="Resumes" Relationship="RecuitmentSystemModel.FK_Resume_UserTable" FromRole="UserTable" ToRole="Resume" />
         </EntityType>
         <EntityContainer Name="RecuitmentSystemEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="UserTables" EntityType="Self.UserTable" />
           <EntitySet Name="Cities" EntityType="RecuitmentSystemModel.City" />
           <EntitySet Name="Colleges" EntityType="RecuitmentSystemModel.College" />
           <EntitySet Name="DeliveryTables" EntityType="RecuitmentSystemModel.DeliveryTable" />
-          <EntitySet Name="Jobs" EntityType="RecuitmentSystemModel.Job" />
+          <EntitySet Name="Jobs" EntityType="RecuitmentSystemModel.Jobs" />
           <AssociationSet Name="FK_Colleges_City" Association="RecuitmentSystemModel.FK_Colleges_City">
             <End Role="City" EntitySet="Cities" />
             <End Role="College" EntitySet="Colleges" />
@@ -166,6 +314,26 @@
           <AssociationSet Name="FK_DeliveryTable_UserTable" Association="RecuitmentSystemModel.FK_DeliveryTable_UserTable">
             <End Role="UserTable" EntitySet="UserTables" />
             <End Role="DeliveryTable" EntitySet="DeliveryTables" />
+          </AssociationSet>
+          <EntitySet Name="EducationBackgrounds" EntityType="RecuitmentSystemModel.EducationBackground" />
+          <EntitySet Name="JobIntensions" EntityType="RecuitmentSystemModel.JobIntension" />
+          <EntitySet Name="Resumes" EntityType="RecuitmentSystemModel.Resume" />
+          <EntitySet Name="WorkExperiences" EntityType="RecuitmentSystemModel.WorkExperience" />
+          <AssociationSet Name="FK_EducationBackground_Resume" Association="RecuitmentSystemModel.FK_EducationBackground_Resume">
+            <End Role="Resume" EntitySet="Resumes" />
+            <End Role="EducationBackground" EntitySet="EducationBackgrounds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobIntension_Resume" Association="RecuitmentSystemModel.FK_JobIntension_Resume">
+            <End Role="Resume" EntitySet="Resumes" />
+            <End Role="JobIntension" EntitySet="JobIntensions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkExperience_Resume" Association="RecuitmentSystemModel.FK_WorkExperience_Resume">
+            <End Role="Resume" EntitySet="Resumes" />
+            <End Role="WorkExperience" EntitySet="WorkExperiences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Resume_UserTable" Association="RecuitmentSystemModel.FK_Resume_UserTable">
+            <End Role="UserTable" EntitySet="UserTables" />
+            <End Role="Resume" EntitySet="Resumes" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="City">
@@ -190,6 +358,7 @@
           <Property Name="CityId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="City" Relationship="RecuitmentSystemModel.FK_Colleges_City" FromRole="College" ToRole="City" />
           <NavigationProperty Name="Jobs" Relationship="RecuitmentSystemModel.FK_Jobs_Colleges" FromRole="College" ToRole="Job" />
+          <Property Name="Introduction" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="DeliveryTable">
           <Key>
@@ -203,19 +372,25 @@
           <Property Name="DeliveryTime" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Job" Relationship="RecuitmentSystemModel.FK_DeliveryTable_Jobs_JobsName_CollegesId" FromRole="DeliveryTable" ToRole="Job" />
           <NavigationProperty Name="UserTable" Relationship="RecuitmentSystemModel.FK_DeliveryTable_UserTable" FromRole="DeliveryTable" ToRole="UserTable" />
+          <Property Name="TrialScore" Type="Double" />
         </EntityType>
-        <EntityType Name="Job">
+        <EntityType Name="Jobs">
           <Key>
             <PropertyRef Name="JobsName" />
             <PropertyRef Name="CollegesId" />
           </Key>
           <Property Name="JobsName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="CollegesId" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="ReleaseTime" Type="DateTime" Precision="3" />
+          <Property Name="ReleaseTime" Type="DateTime" Precision="3" Nullable="false" />
           <Property Name="EndTime" Type="DateTime" Precision="3" />
           <Property Name="Contact" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="College" Relationship="RecuitmentSystemModel.FK_Jobs_Colleges" FromRole="Job" ToRole="College" />
           <NavigationProperty Name="DeliveryTables" Relationship="RecuitmentSystemModel.FK_DeliveryTable_Jobs_JobsName_CollegesId" FromRole="Job" ToRole="DeliveryTable" />
+          <Property Name="PayRangeLow" Type="Double" />
+          <Property Name="PayRangeHigh" Type="Double" />
+          <Property Name="TrialLectureTime" Type="DateTime" Precision="3" />
+          <Property Name="TrialInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Introduction" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Colleges_City">
           <End Type="RecuitmentSystemModel.City" Role="City" Multiplicity="1" />
@@ -231,7 +406,7 @@
         </Association>
         <Association Name="FK_Jobs_Colleges">
           <End Type="RecuitmentSystemModel.College" Role="College" Multiplicity="1" />
-          <End Type="RecuitmentSystemModel.Job" Role="Job" Multiplicity="*" />
+          <End Type="RecuitmentSystemModel.Jobs" Role="Job" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="College">
               <PropertyRef Name="CollegesId" />
@@ -242,7 +417,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DeliveryTable_Jobs_JobsName_CollegesId">
-          <End Type="RecuitmentSystemModel.Job" Role="Job" Multiplicity="1" />
+          <End Type="RecuitmentSystemModel.Jobs" Role="Job" Multiplicity="1" />
           <End Type="RecuitmentSystemModel.DeliveryTable" Role="DeliveryTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Job">
@@ -263,6 +438,135 @@
               <PropertyRef Name="PhoneNumber" />
             </Principal>
             <Dependent Role="DeliveryTable">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EducationBackground">
+          <Key>
+            <PropertyRef Name="EduID" />
+          </Key>
+          <Property Name="EduID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FromYear" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="FromMonth" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="ToYear" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="ToMonth" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="SchoolName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SubMajor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Degree" Type="Int32" />
+          <Property Name="EduDetail" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsOverSeas" Type="Int32" />
+          <Property Name="ResumeID" Type="Int32" />
+          <NavigationProperty Name="Resume" Relationship="RecuitmentSystemModel.FK_EducationBackground_Resume" FromRole="EducationBackground" ToRole="Resume" />
+        </EntityType>
+        <EntityType Name="JobIntension">
+          <Key>
+            <PropertyRef Name="JobIntensionId" />
+          </Key>
+          <Property Name="JobIntensionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobTerm" Type="Int32" />
+          <Property Name="JobArea" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IndustryType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FunType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Salary" Type="Int32" />
+          <Property Name="EntryTime" Type="Int32" />
+          <Property Name="ResumeID" Type="Int32" />
+          <NavigationProperty Name="Resume" Relationship="RecuitmentSystemModel.FK_JobIntension_Resume" FromRole="JobIntension" ToRole="Resume" />
+        </EntityType>
+        <EntityType Name="Resume">
+          <Key>
+            <PropertyRef Name="ResumeID" />
+          </Key>
+          <Property Name="ResumeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="Int32" />
+          <Property Name="YearOfBirthday" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="MonthOfBirthday" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="DayOfBirthday" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="CardType" Type="Int32" />
+          <Property Name="IDNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Salary" Type="Int32" />
+          <Property Name="CurrencyType" Type="Int32" />
+          <Property Name="Mobile" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="QQ" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="PlaceOfDomicile" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CityId" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Stature" Type="Int32" />
+          <Property Name="Height" Type="Int32" />
+          <Property Name="Marrige" Type="Int32" />
+          <Property Name="HomePage" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="StudentGroup" Type="Int32" />
+          <Property Name="WorkYear" Type="Int32" />
+          <Property Name="Introduction" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EducationBackgrounds" Relationship="RecuitmentSystemModel.FK_EducationBackground_Resume" FromRole="Resume" ToRole="EducationBackground" />
+          <NavigationProperty Name="JobIntensions" Relationship="RecuitmentSystemModel.FK_JobIntension_Resume" FromRole="Resume" ToRole="JobIntension" />
+          <NavigationProperty Name="WorkExperiences" Relationship="RecuitmentSystemModel.FK_WorkExperience_Resume" FromRole="Resume" ToRole="WorkExperience" />
+          <Property Name="Weight" Type="Int32" />
+          <Property Name="UserId" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserTable" Relationship="RecuitmentSystemModel.FK_Resume_UserTable" FromRole="Resume" ToRole="UserTable" />
+        </EntityType>
+        <EntityType Name="WorkExperience">
+          <Key>
+            <PropertyRef Name="WorkID" />
+          </Key>
+          <Property Name="WorkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FromYear" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="FromMonth" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="ToYear" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="ToMonth" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Responsiblity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsOverSeas" Type="Int32" />
+          <Property Name="ResumeID" Type="Int32" />
+          <NavigationProperty Name="Resume" Relationship="RecuitmentSystemModel.FK_WorkExperience_Resume" FromRole="WorkExperience" ToRole="Resume" />
+        </EntityType>
+        <Association Name="FK_EducationBackground_Resume">
+          <End Type="RecuitmentSystemModel.Resume" Role="Resume" Multiplicity="0..1" />
+          <End Type="RecuitmentSystemModel.EducationBackground" Role="EducationBackground" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resume">
+              <PropertyRef Name="ResumeID" />
+            </Principal>
+            <Dependent Role="EducationBackground">
+              <PropertyRef Name="ResumeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobIntension_Resume">
+          <End Type="RecuitmentSystemModel.Resume" Role="Resume" Multiplicity="0..1" />
+          <End Type="RecuitmentSystemModel.JobIntension" Role="JobIntension" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resume">
+              <PropertyRef Name="ResumeID" />
+            </Principal>
+            <Dependent Role="JobIntension">
+              <PropertyRef Name="ResumeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkExperience_Resume">
+          <End Type="RecuitmentSystemModel.Resume" Role="Resume" Multiplicity="0..1" />
+          <End Type="RecuitmentSystemModel.WorkExperience" Role="WorkExperience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resume">
+              <PropertyRef Name="ResumeID" />
+            </Principal>
+            <Dependent Role="WorkExperience">
+              <PropertyRef Name="ResumeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Resume_UserTable">
+          <End Type="RecuitmentSystemModel.UserTable" Role="UserTable" Multiplicity="0..1" />
+          <End Type="RecuitmentSystemModel.Resume" Role="Resume" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="PhoneNumber" />
+            </Principal>
+            <Dependent Role="Resume">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
@@ -297,6 +601,7 @@
           <EntitySetMapping Name="Colleges">
             <EntityTypeMapping TypeName="RecuitmentSystemModel.College">
               <MappingFragment StoreEntitySet="Colleges">
+                <ScalarProperty Name="Introduction" ColumnName="Introduction" />
                 <ScalarProperty Name="CityId" ColumnName="CityId" />
                 <ScalarProperty Name="RegisterTime" ColumnName="RegisterTime" />
                 <ScalarProperty Name="IsVerification" ColumnName="IsVerification" />
@@ -309,6 +614,7 @@
           <EntitySetMapping Name="DeliveryTables">
             <EntityTypeMapping TypeName="RecuitmentSystemModel.DeliveryTable">
               <MappingFragment StoreEntitySet="DeliveryTable">
+                <ScalarProperty Name="TrialScore" ColumnName="TrialScore" />
                 <ScalarProperty Name="DeliveryTime" ColumnName="DeliveryTime" />
                 <ScalarProperty Name="JobsName" ColumnName="JobsName" />
                 <ScalarProperty Name="CollegesId" ColumnName="CollegesId" />
@@ -317,13 +623,94 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Jobs">
-            <EntityTypeMapping TypeName="RecuitmentSystemModel.Job">
+            <EntityTypeMapping TypeName="RecuitmentSystemModel.Jobs">
               <MappingFragment StoreEntitySet="Jobs">
+                <ScalarProperty Name="Introduction" ColumnName="Introduction" />
+                <ScalarProperty Name="TrialInfo" ColumnName="TrialInfo" />
+                <ScalarProperty Name="TrialLectureTime" ColumnName="TrialLectureTime" />
+                <ScalarProperty Name="PayRangeHigh" ColumnName="PayRangeHigh" />
+                <ScalarProperty Name="PayRangeLow" ColumnName="PayRangeLow" />
                 <ScalarProperty Name="Contact" ColumnName="Contact" />
                 <ScalarProperty Name="EndTime" ColumnName="EndTime" />
                 <ScalarProperty Name="ReleaseTime" ColumnName="ReleaseTime" />
                 <ScalarProperty Name="CollegesId" ColumnName="CollegesId" />
                 <ScalarProperty Name="JobsName" ColumnName="JobsName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EducationBackgrounds">
+            <EntityTypeMapping TypeName="RecuitmentSystemModel.EducationBackground">
+              <MappingFragment StoreEntitySet="EducationBackground">
+                <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
+                <ScalarProperty Name="IsOverSeas" ColumnName="IsOverSeas" />
+                <ScalarProperty Name="EduDetail" ColumnName="EduDetail" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="SubMajor" ColumnName="SubMajor" />
+                <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+                <ScalarProperty Name="ToMonth" ColumnName="ToMonth" />
+                <ScalarProperty Name="ToYear" ColumnName="ToYear" />
+                <ScalarProperty Name="FromMonth" ColumnName="FromMonth" />
+                <ScalarProperty Name="FromYear" ColumnName="FromYear" />
+                <ScalarProperty Name="EduID" ColumnName="EduID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobIntensions">
+            <EntityTypeMapping TypeName="RecuitmentSystemModel.JobIntension">
+              <MappingFragment StoreEntitySet="JobIntension">
+                <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
+                <ScalarProperty Name="EntryTime" ColumnName="EntryTime" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="FunType" ColumnName="FunType" />
+                <ScalarProperty Name="IndustryType" ColumnName="IndustryType" />
+                <ScalarProperty Name="JobArea" ColumnName="JobArea" />
+                <ScalarProperty Name="JobTerm" ColumnName="JobTerm" />
+                <ScalarProperty Name="JobIntensionId" ColumnName="JobIntensionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Resumes">
+            <EntityTypeMapping TypeName="RecuitmentSystemModel.Resume">
+              <MappingFragment StoreEntitySet="Resume">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Introduction" ColumnName="Introduction" />
+                <ScalarProperty Name="WorkYear" ColumnName="WorkYear" />
+                <ScalarProperty Name="HomePage" ColumnName="HomePage" />
+                <ScalarProperty Name="Marrige" ColumnName="Marrige" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="PlaceOfDomicile" ColumnName="PlaceOfDomicile" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="QQ" ColumnName="QQ" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="CurrencyType" ColumnName="CurrencyType" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+                <ScalarProperty Name="CardType" ColumnName="CardType" />
+                <ScalarProperty Name="DayOfBirthday" ColumnName="DayOfBirthday" />
+                <ScalarProperty Name="MonthOfBirthday" ColumnName="MonthOfBirthday" />
+                <ScalarProperty Name="YearOfBirthday" ColumnName="YearOfBirthday" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkExperiences">
+            <EntityTypeMapping TypeName="RecuitmentSystemModel.WorkExperience">
+              <MappingFragment StoreEntitySet="WorkExperience">
+                <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
+                <ScalarProperty Name="IsOverSeas" ColumnName="IsOverSeas" />
+                <ScalarProperty Name="Responsiblity" ColumnName="Responsiblity" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="ToMonth" ColumnName="ToMonth" />
+                <ScalarProperty Name="ToYear" ColumnName="ToYear" />
+                <ScalarProperty Name="FromMonth" ColumnName="FromMonth" />
+                <ScalarProperty Name="FromYear" ColumnName="FromYear" />
+                <ScalarProperty Name="WorkID" ColumnName="WorkID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

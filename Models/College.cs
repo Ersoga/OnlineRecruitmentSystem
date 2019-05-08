@@ -17,7 +17,7 @@ namespace Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public College()
         {
-            this.Jobs = new HashSet<Job>();
+            this.Jobs = new HashSet<Jobs>();
         }
     
         public string CollegesId { get; set; }
@@ -26,9 +26,10 @@ namespace Models
         public bool IsVerification { get; set; }
         public System.DateTime RegisterTime { get; set; }
         public int CityId { get; set; }
+        public string Introduction { get; set; }
     
         public virtual City City { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Job> Jobs { get; set; }
+        public virtual ICollection<Jobs> Jobs { get; set; }
     }
 }

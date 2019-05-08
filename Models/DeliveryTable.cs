@@ -18,8 +18,9 @@ namespace Models
         public string CollegesId { get; set; }
         public string JobsName { get; set; }
         public System.DateTime DeliveryTime { get; set; }
+        public Nullable<double> TrialScore { get; set; }
     
-        public virtual Job Job { get; set; }
+        public virtual Jobs Job { get; set; }
         public virtual UserTable UserTable { get; set; }
     }
 }

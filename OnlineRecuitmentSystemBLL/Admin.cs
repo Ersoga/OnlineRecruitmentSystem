@@ -14,7 +14,7 @@ namespace OnlineRecuitmentSystemBLL
     {
         IDataBase dataBase = new SqlServer();
         private IUserManager userManager = new UserManager();
-        private ICollegesManager collegesManager = new CollagesManager();
+        private ICollegesManager collegesManager = new CollegesManager();
         ParameterFactory parameterFactory = new ParameterFactory();
         /// <summary>
         /// 获取用户信息

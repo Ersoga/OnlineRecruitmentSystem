@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineRecuitmentSystemIBLL"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineRecuitmentSystemIDAL", "OnlineRecuitmentSystemIDAL\OnlineRecuitmentSystemIDAL.csproj", "{1F22F774-FBEB-467D-B65F-1438E095239E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{641EF7BE-706D-46DE-84F8-6ACD40200D07}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{1F22F774-FBEB-467D-B65F-1438E095239E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F22F774-FBEB-467D-B65F-1438E095239E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F22F774-FBEB-467D-B65F-1438E095239E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{641EF7BE-706D-46DE-84F8-6ACD40200D07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{641EF7BE-706D-46DE-84F8-6ACD40200D07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{641EF7BE-706D-46DE-84F8-6ACD40200D07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{641EF7BE-706D-46DE-84F8-6ACD40200D07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

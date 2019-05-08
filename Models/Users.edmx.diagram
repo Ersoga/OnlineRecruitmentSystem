@@ -4,16 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="27c7540ad6ee49ebbf4e1efdc94f8eac" Name="Diagram1">
+      <Diagram DiagramId="27c7540ad6ee49ebbf4e1efdc94f8eac" Name="Diagram1" ZoomLevel="78">
         <EntityTypeShape EntityType="RecuitmentSystemModel.UserTable" Width="2.625" PointX="0.625" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="RecuitmentSystemModel.City" Width="1.5" PointX="0.75" PointY="3.625" />
-        <EntityTypeShape EntityType="RecuitmentSystemModel.College" Width="1.5" PointX="3" PointY="3.375" />
+        <EntityTypeShape EntityType="RecuitmentSystemModel.City" Width="1.5" PointX="2.875" PointY="4" />
+        <EntityTypeShape EntityType="RecuitmentSystemModel.College" Width="1.5" PointX="4.875" PointY="4" />
         <EntityTypeShape EntityType="RecuitmentSystemModel.DeliveryTable" Width="1.5" PointX="7.5" PointY="1.375" />
-        <EntityTypeShape EntityType="RecuitmentSystemModel.Job" Width="1.5" PointX="5.25" PointY="3.375" />
+        <EntityTypeShape EntityType="RecuitmentSystemModel.Jobs" Width="1.5" PointX="7.25" PointY="4" />
         <AssociationConnector Association="RecuitmentSystemModel.FK_Colleges_City" />
         <AssociationConnector Association="RecuitmentSystemModel.FK_Jobs_Colleges" />
         <AssociationConnector Association="RecuitmentSystemModel.FK_DeliveryTable_Jobs_JobsName_CollegesId" />
         <AssociationConnector Association="RecuitmentSystemModel.FK_DeliveryTable_UserTable" />
+        <EntityTypeShape EntityType="RecuitmentSystemModel.EducationBackground" Width="1.5" PointX="6.25" PointY="14.375" />
+        <EntityTypeShape EntityType="RecuitmentSystemModel.JobIntension" Width="1.5" PointX="6.25" PointY="7.5" />
+        <EntityTypeShape EntityType="RecuitmentSystemModel.Resume" Width="1.5" PointX="4" PointY="7.5" />
+        <EntityTypeShape EntityType="RecuitmentSystemModel.WorkExperience" Width="1.5" PointX="6.25" PointY="10.875" />
+        <AssociationConnector Association="RecuitmentSystemModel.FK_EducationBackground_Resume" />
+        <AssociationConnector Association="RecuitmentSystemModel.FK_JobIntension_Resume" />
+        <AssociationConnector Association="RecuitmentSystemModel.FK_WorkExperience_Resume" />
+        <AssociationConnector Association="RecuitmentSystemModel.FK_Resume_UserTable" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

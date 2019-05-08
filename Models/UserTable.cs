@@ -18,6 +18,7 @@ namespace Models
         public UserTable()
         {
             this.DeliveryTables = new HashSet<DeliveryTable>();
+            this.Resumes = new HashSet<Resume>();
         }
     
         public string UserName { get; set; }
@@ -28,5 +29,7 @@ namespace Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DeliveryTable> DeliveryTables { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Resume> Resumes { get; set; }
     }
 }

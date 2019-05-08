@@ -12,7 +12,7 @@ namespace OnlineRecruitmentSystem
     
     public partial class SchoolRegister : System.Web.UI.Page
     {
-        ICollegesManager schoolManager = new CollagesManager();
+        ICollegesManager schoolManager = new CollegesManager();
         protected void Page_Load(object sender, EventArgs e)
         {
 

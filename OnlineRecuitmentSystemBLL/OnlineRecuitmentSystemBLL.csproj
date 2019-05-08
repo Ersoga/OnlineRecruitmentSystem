@@ -42,10 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin.cs" />
-    <Compile Include="CollagesManager.cs" />
+    <Compile Include="CollegesManager.cs" />
+    <Compile Include="College.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegistedUser.cs" />
-    <Compile Include="UnRegistedUser.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="UserManager.cs" />
   </ItemGroup>
   <ItemGroup>

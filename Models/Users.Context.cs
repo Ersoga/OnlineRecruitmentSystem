@@ -29,6 +29,10 @@ namespace Models
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<College> Colleges { get; set; }
         public virtual DbSet<DeliveryTable> DeliveryTables { get; set; }
-        public virtual DbSet<Job> Jobs { get; set; }
+        public virtual DbSet<Jobs> Jobs { get; set; }
+        public virtual DbSet<EducationBackground> EducationBackgrounds { get; set; }
+        public virtual DbSet<JobIntension> JobIntensions { get; set; }
+        public virtual DbSet<Resume> Resumes { get; set; }
+        public virtual DbSet<WorkExperience> WorkExperiences { get; set; }
     }
 }

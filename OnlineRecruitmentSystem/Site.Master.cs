@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OnlineRecuitmentSystemBLL;
+using OnlineRecuitmentSystemIBLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,24 +16,28 @@ namespace OnlineRecruitmentSystem
         {
             //string Users = Server.UrlDecode(Request.QueryString["User"]);
             //Session["User"].ToString();
-            if ((string)Session["User"] != null)
+            if (Session["User"] != null)
             {
-                this.UserLogin.Text = (string)Session["User"];
-                this.UserLogin.PostBackUrl = "~/PersonalCenter.aspx";
-                this.SchoolLogin.Text = "注销";
-                this.SchoolLogin.ID = "Logout";
-                this.SchoolLogin.Style["herf"] = "~/Login.aspx?";
-                this.SchoolLogin.Click += Logout_Click;
-            }
-            else
-            {
-                this.UserLogin.Text = "用户登陆";
-                this.SchoolLogin.Text = "高校登陆";
-                this.UserLogin.PostBackUrl = "~/Login.aspx?type=User";
-                this.UserLogin.Click += UserLogin_Click;
-                this.SchoolLogin.PostBackUrl = "~/Login.aspx?type=School";
-                this.SchoolLogin.Click += SchoolLogin_Click;
-                //this.Register.Click += Logout_Click;
+                User user = (User)Session["User"];
+                if (user.LoginStatus== LoginInfo.LOGIN)
+                {
+                    this.UserLogin.Text = ((User)Session["User"]).UserInfo.UserName;
+                    this.UserLogin.PostBackUrl = "~/PersonalCenter.aspx";
+                    this.SchoolLogin.Text = "注销";
+                    this.SchoolLogin.ID = "Logout";
+                    this.SchoolLogin.Style["herf"] = "~/Login.aspx?";
+                    this.SchoolLogin.Click += Logout_Click;
+                }
+                else
+                {
+                    this.UserLogin.Text = "用户登陆";
+                    this.SchoolLogin.Text = "高校登陆";
+                    this.UserLogin.PostBackUrl = "~/Login.aspx?type=User";
+                    this.UserLogin.Click += UserLogin_Click;
+                    this.SchoolLogin.PostBackUrl = "~/Login.aspx?type=School";
+                    this.SchoolLogin.Click += SchoolLogin_Click;
+                }
+                
             }
 
         }

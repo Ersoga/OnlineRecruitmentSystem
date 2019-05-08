@@ -311,7 +311,20 @@ namespace OnlineRecuitmentSystemDAL
 
         public DbDataReader ExecuteReader(string commandText, params DbParameter[] parameters)
         {
-            return this.Execute(x=>x.ExecuteReader(),commandText,parameters);
+            this.ConnectionOpen();
+            SqlDataReader reader;
+
+            using (SqlCommand readerCommand = new SqlCommand(commandText, con))
+            {
+
+                if (parameters != null && parameters.Length > 0)
+                    readerCommand.Parameters.AddRange(parameters);
+
+                reader = readerCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            }
+
+            return reader;
+            //return this.Execute(x=>x.ExecuteReader(),commandText,parameters);
         }
 
         public object ExecuteScalar(string commandText, params DbParameter[] parameters)
